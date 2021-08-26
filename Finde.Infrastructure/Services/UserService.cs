@@ -40,9 +40,25 @@ namespace Finde.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public Task RegisterAsync(Guid userId, string email, string username, string password)
+        public async Task RegisterAsync(Guid userId, string email, string username, string password)
         {
-            throw new NotImplementedException();
+            var user = await _userRepository.GetAsync(email);
+
+            if(user != null)
+            {
+                throw new Exception($"User with email: '{email}' already exists.");
+            }
+
+            var salt = _encrypter.GetSalt(password);
+            var hash = _encrypter.GetHash(password, salt);
+            user = new User(userId, email, password, salt, hash, username);
+            await _userRepository.AddAsync(user);
+        }
+
+        public async Task ChangeUserPassword(Guid userId, string newPassword)
+        {
+            var user = await _userRepository.GetAsync(userId);
+
         }
     }
 }

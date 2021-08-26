@@ -12,6 +12,7 @@ namespace Finde.Infrastructure.Services
         Task<UserDTO> GetAsync(string email);
         Task<IEnumerable<UserDTO>> BrowseAsync();
         Task RegisterAsync(Guid userId, string email, string username, string password);
+        Task ChangeUserPasswordAsync(Guid userId, string newPassword);
         Task LoginAsync(string email, string password);
     }
 }

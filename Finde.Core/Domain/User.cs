@@ -24,9 +24,12 @@ namespace Finde.Core.Domain
 
         protected User() { }
 
-        public User(Guid id, string email, string password, string salt, string username)
+        public User(Guid userId, string email, string password, string salt, string hash, string username)
         {
-            Id = id;
+            Id = userId;
+            SetEmail(email);
+            SetPassword(password, salt);
+            SetUserName(username);
             CreatedAt = DateTime.UtcNow;
         }
 
