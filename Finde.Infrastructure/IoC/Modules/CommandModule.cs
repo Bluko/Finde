@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Finde.Infrastructure.IoC.Modules
 {
-    class CommandModule : Autofac.Module
+    public class CommandModule : Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)
         {

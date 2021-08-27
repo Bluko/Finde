@@ -1,12 +1,7 @@
 ﻿using Autofac;
-using AutoMapper.Configuration;
+using Microsoft.Extensions.Configuration;
 using Finde.Infrastructure.IoC.Modules;
 using Finde.Infrastructure.Mapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Finde.Infrastructure.IoC
 {
@@ -22,11 +17,12 @@ namespace Finde.Infrastructure.IoC
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterInstance(AutoMapperConfig.Initialize()).SingleInstance();
-            builder.RegisterModule<`>();
+            builder.RegisterModule<CommandModule>();
             builder.RegisterModule<RepositoryModule>();
             builder.RegisterModule<MongoModule>();
             builder.RegisterModule<SqlModule>();
             builder.RegisterModule<ServiceModule>();
+            builder.RegisterModule(new SettingsModule(_configuration));
         }
     }
 }

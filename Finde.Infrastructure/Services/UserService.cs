@@ -60,5 +60,10 @@ namespace Finde.Infrastructure.Services
             var user = await _userRepository.GetAsync(userId);
 
         }
+
+        public Task ChangeUserPasswordAsync(Guid userId, string newPassword)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
